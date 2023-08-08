@@ -6,10 +6,10 @@ DROP TABLE IF EXISTS recipes;
 -- CREATION TABLE recettes
 CREATE TABLE recipes (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(150),
-    slug VARCHAR(50),
+    title VARCHAR(150) NOT NULL,
+    slug VARCHAR(50)NOT NULL UNIQUE,
     content TEXT,
-    duration SMALLINT,
+    duration SMALLINT DEFAULT 10 NOT NULL,
     online BOOLEAN,
     created_at TIMESTAMP  
 ) ENGINE=InnoDB;
@@ -25,20 +25,18 @@ SET time_zone='+00:00'; -- Nécéssaire pour insérer une date.
 INSERT INTO recipes (
         title,
         slug,
-        content,
-        duration,
         online,
         created_at
     ) VALUES (
         'Soupe1',
         'soupe',
-        'Contenu du test',
-        10,
         FALSE,
-        '1970-01-01 00:00:01'
+        NULL
     );
 
+SELECT * FROM recipes WHERE content IS NULL;
 
 -- DELETE FROM recipes WHERE id = 2;
 
+-- UPDATE recipes SET content = NULL;
 -- UPDATE recipes SET title = 'Soupe de légumes' WHERE title = 'soupe '; 
