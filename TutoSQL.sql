@@ -1,0 +1,32 @@
+-- MYSQL
+
+-- CREATION DE TABLE
+
+CREATE TABLE posts (
+    title VARCHAR(150), 
+    Content TEXT,
+    category VARCHAR(50),
+    created_at DATETIME
+);
+
+-- SUPPRIMER/AJOUTER/MODIFIER UNE COLONNE
+ALTER TABLE posts DROP category;
+ALTER TABLE posts ADD category VARCHAR(50);
+
+-- RENOMER UNE TABLE
+ALTER TABLE posts RENAME TO post;
+
+-- SUPPRIMER UNE TABLE
+DROP TABLE IF EXISTS recipes;
+DROP TABLE IF EXISTS category;
+
+-- EXERCICE
+-- CREATION TABLE recettes
+CREATE TABLE recipes (
+    title VARCHAR(150) NOT NULL,
+    slug VARCHAR(50) NOT NULL UNIQUE,
+    content TEXT,
+    duration SMALLINT,
+    online BOOLEAN,
+    created_at DATETIME
+) ENGINE=InnoDB;
