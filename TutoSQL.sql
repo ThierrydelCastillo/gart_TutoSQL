@@ -5,14 +5,21 @@ DROP TABLE IF EXISTS recipes;
 
 -- CREATION TABLE recettes
 CREATE TABLE recipes (
-    title VARCHAR(150) NOT NULL,
-    slug VARCHAR(50) NOT NULL UNIQUE,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(150),
+    slug VARCHAR(50),
     content TEXT,
     duration SMALLINT,
     online BOOLEAN,
     created_at TIMESTAMP  
 ) ENGINE=InnoDB;
 
+-- INDEXER CERTAINS CHAMPS
+-- SHOW INDEX FROM recipes;
+-- CREATE UNIQUE INDEX idx_slug ON recipes (slug);
+-- DROP INDEX idx_slug ON recipes;
+
+-- UPDATE recipes SET slug = 'soupe-3' WHERE id = 3;
 
 SET time_zone='+00:00'; -- Nécéssaire pour insérer une date.
 INSERT INTO recipes (
@@ -23,32 +30,15 @@ INSERT INTO recipes (
         online,
         created_at
     ) VALUES (
-        'Salade de fruits',
-        'salade-de-fruit',
+        'Soupe1',
+        'soupe',
         'Contenu du test',
-        30,
-        TRUE,
-        '1970-01-01 00:00:01'
-    ),(
-        'Soupe',
-        'Soupe',
-        'Contenu du test',
-        30,
+        10,
         FALSE,
-        '1970-01-01 00:00:02'
+        '1970-01-01 00:00:01'
     );
 
--- RECUPERER DES DONNEES
-SELECT title, duration 
-FROM recipes
-WHERE slug IN ('Soupe') AND duration < 20;
 
-SELECT title, duration 
-FROM recipes
-WHERE slug LIKE 'salade%' AND duration < 20;
+-- DELETE FROM recipes WHERE id = 2;
 
--- SUPPRIMER DES CHAMPS
-DELETE FROM recipes WHERE title = 'Soupe3';
-
--- METTE A JOUR DES CHAMPS
-UPDATE recipes SET title = 'Soupe de légumes' WHERE title = 'soupe '; 
+-- UPDATE recipes SET title = 'Soupe de légumes' WHERE title = 'soupe '; 
